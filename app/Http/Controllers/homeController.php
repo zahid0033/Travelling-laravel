@@ -1,5 +1,8 @@
 <?php
-
+/**
+      created by zahid Hossain
+      Date: 09/12/2018
+*/
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;

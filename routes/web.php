@@ -46,6 +46,7 @@ Route::get('/hotel-book/{id}/book','hotelPostController@book')->name('hotelPost.
 //user -url
 Route::get('/user-profile','userController@profile')->name('user.profile');
 
+
 //login-url
 Route::get('/login','loginController@index')->name('login.index');
 Route::post('/login','loginController@verify')->name('login.verify');
@@ -54,7 +55,8 @@ Route::get('/login-hotel','loginController@hotel')->name('login.hotel');
 Route::post('/login-hotel','loginController@hotelVerify')->name('login.hotelVerify');
 
 //signup -url
-Route::get('/signup','signUpController@index')->name('signup.index');
+Route::get('/signup-user','signUpController@index')->name('signup.index');
+Route::post('/signup-user','signUpController@store')->name('signup.store');
 
 Route::get('/signup-hotel','signUpController@hotel')->name('signup.hotel');
 

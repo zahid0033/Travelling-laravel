@@ -61,12 +61,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<h2>Choice For 
 Holiday Homes</h2>
 						<div class="book-form agileits-login">
-							<form action="#" method="post">
+							<form action="" method="post" enctype="multipart/form-data">
+
+								{{@csrf_field()}}
 								<div class="phone_email">
 									<label>Full name : </label>
 									<div class="form-text">
 										<i class="fa fa-user" aria-hidden="true"></i>
-										<input type="text" name="Name" placeholder="" required="">
+										<input type="text" name="username" placeholder="" required="">
 									</div> 
 								</div>
 								<div class="phone_email phone_email1">
@@ -80,14 +82,14 @@ Holiday Homes</h2>
 									<label>Password : </label>
 									<div class="form-text">
 										<i class="fa fa-envelope-o" aria-hidden="true"></i>
-										<input type="password" name="email" placeholder="" required="">
+										<input type="password" name="password" placeholder="" required="">
 									</div>
 								</div>
 								<div class="phone_email phone_email1">
 									<label>Phone number : </label>
 									<div class="form-text">
 										<i class="fa fa-phone" aria-hidden="true"></i>
-										<input type="text" name="Phone no" placeholder="" required="">
+										<input type="text" name="mobile" placeholder="" required="">
 									</div> 
 								</div> 
 								<div class="phone_email">

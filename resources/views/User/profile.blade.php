@@ -45,7 +45,7 @@
               </div>
 
               <div class="col-md-6 col-lg-6 mb-4 ftco-animate">
-                <img src="{{asset('images/'.$user->img)}}.jpg" style="max-width: 50%">
+                <img src="{{asset('images/'.$user->img)}}" style="max-width: 50%">
               </div>
               @endforeach
 

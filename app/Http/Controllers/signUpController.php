@@ -1,9 +1,15 @@
 <?php
 
+/**
+      created by zahid Hossain
+      Date: 09/12/2018
+*/
 namespace App\Http\Controllers;
 
 use App\signUp;
 use Illuminate\Http\Request;
+
+use App\User;
 
 class signUpController extends Controller
 {
@@ -35,7 +41,23 @@ class signUpController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $user = new User();
+        $user->username=$request->username;
+        $user->email=$request->email;
+        $user->password=$request->password;
+        $user->address=$request->address;
+        $user->mobile=$request->mobile;
+
+        if($request->hasfile('image')){
+            $file=$request->file('image');
+            $file->move(public_path().'/',$file->getClientOriginalName());
+            $user->img=$file->getClientOriginalName();
+        }
+
+        $user->save();
+
+        return redirect()->route('home.index');
     }
 
     /**
