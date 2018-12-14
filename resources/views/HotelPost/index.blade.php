@@ -35,7 +35,7 @@
 
               @foreach($hotels as $hotel)
               <div class="col-md-6 col-lg-6 mb-4 ftco-animate">
-                <a href="{{route('hotelPost.book',[$hotel->id])}}" class="block-5" style="background-image: url('{{asset('images/'.$hotel->img)}}.jpg');">
+                <a href="#" class="block-5" style="background-image: url('{{asset('images/'.$hotel->img)}}.jpg');">
                   <div class="text">
                     <span class="price">${{$hotel->price}}/night</span>
                     <h3 class="heading">{{$hotel->hotel_name}}</h3>
@@ -44,6 +44,12 @@
                     </div>
                     <p class="star-rate"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star-half-full"></span> <span>500 reviews</span></p>
                   </div>
+
+                  @if(session('user')!=null)
+                    <a href="{{route('hotelPost.book',[$hotel->id])}}" class="btn btn-primary float-right" style="margin-top: 1em">Book</a>
+                  @endif
+
+                  
                 </a>
               </div>
               @endforeach

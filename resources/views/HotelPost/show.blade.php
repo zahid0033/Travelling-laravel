@@ -43,8 +43,9 @@
                       <span>{{$hotel->location}}</span>
                     </div>
                   </div>
-
-                    <a href="{{route('hotelPost.book',[$hotel->id])}}" class="btn btn-primary pull-right">Book</a>
+                  @if(session('user')!=null)
+                    <a href="{{route('hotelPost.book',[$hotel->id])}}" class="btn btn-primary float-right">Book</a>
+                  @endif
                 </a>
               </div>
               @endforeach
