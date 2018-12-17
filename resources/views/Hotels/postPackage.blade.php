@@ -87,6 +87,13 @@ Seat Right Now</h2>
                     <input type="text" name="price" placeholder=""   required="">
                   </div> 
                 </div>
+                 <div class="phone_email">
+                  <label>package Name : </label>
+                  <div class="form-text">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <input type="text" name="package_name" placeholder=""   required="">
+                  </div> 
+                </div>
                 <div class="phone_email phone_email1">
                   <label>Image : </label>
                   <div class="form-text">

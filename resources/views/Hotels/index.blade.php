@@ -39,14 +39,14 @@
 
                @foreach($hotels as $hotel)
                 <div class="col-md-6 col-lg-6 mb-4 ftco-animate">
-                  <a href="{{route('hotel.showHotel',[$hotel->id])}}" class="block-5" style="background-image: url('{{asset('images/'.$hotel->img)}}.jpg');">
+                  <a href="{{route('hotel.showHotel',[$hotel->id])}}" class="block-5" style="background-image: url('{{asset('images/'.$hotel->img)}}');">
                     <div class="text">
                       <span class="price">${{$hotel->price}}/night</span>
                       <h3 class="heading">{{$hotel->hotel_name}}</h3>
                       <div class="post-meta">
                         <span>{{$hotel->location}}</span>
                       </div>
-                      <p class="star-rate"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star-half-full"></span> <span>500 reviews</span></p>
+                      <p class="star-rate"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star-half-full"></span> <span></span></p>
                     </div>
                   </a>
                 </div>
@@ -68,16 +68,7 @@
 
             </div>
 
-            <div class="sidebar-box ftco-animate">
-              <div class="categories">
-                <h3>Categories</h3>
-                <li><a href="#">Tours <span>(12)</span></a></li>
-                <li><a href="#">Hotels <span>(22)</span></a></li>
-                <li><a href="#">Cruises <span>(37)</span></a></li>
-                <li><a href="#">Restaurant <span>(42)</span></a></li>
-                <li><a href="#">Destination <span>(14)</span></a></li>
-              </div>
-            </div>
+            
 
             <div class="sidebar-box ftco-animate">
               <h3>Tag Cloud</h3>

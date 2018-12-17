@@ -29,4 +29,11 @@ class adminController extends Controller
 
     	return view('Admin.hotel')->with('hotels',$hotels);
     }
+
+    public function user(Request $request)
+    {
+    	$users = User::all();
+
+    	return view('Admin.user')->with('users',$users);
+    }
 }

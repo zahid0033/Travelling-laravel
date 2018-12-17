@@ -35,7 +35,7 @@
 
               @foreach($hotels as $hotel)
               <div class="col-md-6 col-lg-6 mb-4 ftco-animate">
-                <a href="#" class="block-5" style="background-image: url('{{asset('images/'.$hotel->img)}}');">
+                <a href="{{route('hotel.showHotel',[$hotel->id])}}" class="block-5" style="background-image: url('{{asset('images/'.$hotel->img)}}');">
                   <div class="text">
                     <span class="price">${{$hotel->price}}/night</span>
                     <h3 class="heading">{{$hotel->package_name}}</h3>

@@ -31,7 +31,7 @@
   <div class="row">
     <a href="{{route('admin.hotel')}}" class="btn btn-primary">Hotel</a>
     <a href="" class="btn btn-primary">Hotel Posts</a>
-    <a href="" class="btn btn-primary">User</a>
+    <a href="{{route('admin.user')}}" class="btn btn-primary">User</a>
   </div>
 </div>
 
@@ -51,7 +51,7 @@
           ['Location', 'post'],
 
           <?php
-            $location = ['Dhaka','chittagong'];
+            $location = ['Dhaka','sylhet'];
             $datas = [$dhaka,$sylhet];
 
             for($i=0;$i<2;$i++)

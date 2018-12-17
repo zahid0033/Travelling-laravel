@@ -76,63 +76,63 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<h2>Choice For 
 Holiday Homes</h2>
 						<div class="book-form agileits-login">
-							<form action="#" method="post" enctype="multipart/form-data">
+							<form action="" method="post" enctype="multipart/form-data">
 
 								 {{@csrf_field()}}
 								<div class="phone_email">
 									<label>Username : </label>
 									<div class="form-text">
 										<i class="fa fa-user" aria-hidden="true"></i>
-										<input type="text" name="username" placeholder="" required="">
+										<input type="text" name="username" placeholder=""value="{{old('username')}}" required="">
 									</div> 
 								</div>
 								<div class="phone_email phone_email1">
 									<label>Email : </label>
 									<div class="form-text">
 										<i class="fa fa-envelope-o" aria-hidden="true"></i>
-										<input type="email" name="email" placeholder="" required="">
+										<input type="email" name="email" placeholder="" value="{{old('email')}}" required="">
 									</div>
 								</div>
 								<div class="phone_email">
 									<label>Password: </label>
 									<div class="form-text">
 										<i class="fa fa-user" aria-hidden="true"></i>
-										<input type="password" name="password" placeholder="" required="">
+										<input type="password" name="password" placeholder="" value="{{old('password')}}" required="">
 									</div> 
 								</div>
 								<div class="phone_email phone_email1">
 									<label>Hotel Name : </label>
 									<div class="form-text">
 										<i class="fa fa-envelope-o" aria-hidden="true"></i>
-										<input type="text" name="hotel_name" placeholder="" required="">
+										<input type="text" name="hotel_name" placeholder="" value="{{old('hotel_name')}}" required="">
 									</div>
 								</div>
 								<div class="phone_email">
 									<label>Location : </label>
 									<div class="form-text">
 										<i class="fa fa-phone" aria-hidden="true"></i>
-										<input type="text" name="location" placeholder="" required="">
+										<input type="text" name="location" placeholder="" value="{{old('location')}}" required="">
 									</div> 
 								</div> 
 								<div class="phone_email phone_email1">
 									<label>Pool : </label>
 									<div class="form-text">
 										<i class="fa fa-map-marker" aria-hidden="true"></i>
-										<input type="text" name="pool" placeholder="" required="">
+										<input type="text" name="pool" placeholder="" value="{{old('pool')}}" required="">
 									</div> 
 								</div> 
 								<div class="phone_email">
 									<label>Restaurent : </label>
 									<div class="form-text">
 										<i class="fa fa-phone" aria-hidden="true"></i>
-										<input type="text" name="restaurent" placeholder="" required="">
+										<input type="text" name="restaurent" placeholder="" value="{{old('restaurent')}}" required="">
 									</div> 
 								</div> 
 								<div class="phone_email phone_email1">
 									<label>Price : </label>
 									<div class="form-text">
 										<i class="fa fa-map-marker" aria-hidden="true"></i>
-										<input type="text" name="price" placeholder="" required="">
+										<input type="text" name="price" placeholder="" value="{{old('price')}}" required="">
 									</div> 
 								</div> 
 								<div class="phone_email phone_email1">
@@ -145,7 +145,16 @@ Holiday Homes</h2>
 								<div class="clear"></div>
 								 
 												
-								<input type="submit" value="Reservation">
+								<input type="submit" value="Sign Up">
+								@if(count($errors) > 0)
+
+								@foreach($errors->all() as $error)
+
+									<p class="alert alert-danger">{{$error}}</p>
+
+								@endforeach
+
+							@endif
 							</form>
 						</div>
 

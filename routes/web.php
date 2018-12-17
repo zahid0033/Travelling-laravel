@@ -21,14 +21,10 @@ Route::get('/', function () {
     return view('Home.index');
 });
 
-Route::group(['middleware'=>['session']],function(){
+// Route::group(['middleware'=>['session']],function(){
 
-//hotel-url
-	Route::get('/myPosts','hotelController@myPosts')->name('hotel.myPosts');
-	Route::get('/myPosts/{id}/edit','hotelController@editMypost')->name('hotel.editMypost');
-	Route::post('/myPosts/{id}/edit','hotelController@postMyEditPost')->name('hotel.postMyEditPost');
 
-});
+// });
 
 //home-url
 Route::get('/home','homeController@index')->name('home.index');
@@ -101,3 +97,4 @@ Route::get('/logout','logoutController@index')->name('logout.index');
 //admin - url
 Route::get('/admin','adminController@index')->name('admin.index');
 Route::get('/admin-hotel','adminController@hotel')->name('admin.hotel');
+Route::get('/admin-user','adminController@user')->name('admin.user');

@@ -9,6 +9,7 @@ namespace App\Http\Controllers;
 use App\signUp;
 use Illuminate\Http\Request;
 use App\Http\Requests\userRegRequest;
+use App\Http\Requests\hotelRegReq;
 
 use App\User;
 use App\Hotel;
@@ -62,7 +63,7 @@ class signUpController extends Controller
         return redirect()->route('home.index');
     }
 
-    public function hotelStore(Request $request)
+    public function hotelStore(hotelRegReq $request)
     {
         $hotel = new Hotel();
         $hotel->username = $request->username;

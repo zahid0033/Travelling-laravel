@@ -123,7 +123,7 @@ Holiday Homes</h2>
 								<div class="clear"></div>
 								
 												
-								<input type="submit" value="Reservation">
+								<input type="submit" value="Sign Up">
 
 
 

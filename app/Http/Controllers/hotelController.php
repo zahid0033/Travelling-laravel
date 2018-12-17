@@ -257,6 +257,7 @@ class hotelController extends Controller
         $post = new Hotel_post();
         $post->hotel_id=$request->hotel_id;
         $post->hotel_name=$request->hotel_name;
+        $post->package_name=$request->package_name;
         $post->location=$request->location;
         $post->singleRoom=$request->singleRoom;
         $post->twoPerRoom=$request->twoPerRoom;

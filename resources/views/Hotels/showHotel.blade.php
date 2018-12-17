@@ -52,7 +52,7 @@
               <div class="col-md-6 col-lg-6 mb-4 ftco-animate">
                 
 
-                <img src="{{asset('images/'.$hotel->img)}}.jpg" style="max-width: 50%">
+                <img src="{{asset('images/'.$hotel->img)}}" style="max-width: 50%">
               </div>
 
             </div>
