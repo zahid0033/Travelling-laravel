@@ -8,9 +8,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\userRequest;
 
 use App\User;
 use App\Hotel;
+use App\Admin;
 
 class loginController extends Controller
 {
@@ -19,7 +21,7 @@ class loginController extends Controller
     	return view('login.user');
     }
 
-    public function verify(Request $request)
+    public function verify(userRequest $request)
     {
     	$email=$request->email;
     	$password=$request->password;
@@ -65,6 +67,32 @@ class loginController extends Controller
     		$request->session()->flash('message','Invalid email or password');
     		return redirect()->route('login.hotel');
     	}
+
+    }
+
+    public function admin()
+    {
+        return view('login.admin');
+    }
+    public function adminVerify(Request $request)
+    {
+        $email=$request->email;
+        $password=$request->password;
+
+        $user=Admin::where('email',$email)
+                  ->where('password',$password)
+                  ->first();
+
+        if($user!=null)
+        {
+            $request->session()->put('admin',$email);
+            return redirect()->route('admin.index');
+        }
+        else
+        {
+            $request->session()->flash('message','Invalid email or password');
+            return redirect()->route('login.admin');
+        }
 
     }
 

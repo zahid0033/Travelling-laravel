@@ -25,6 +25,8 @@ class hotelController extends Controller
                 ->get();
         
     	return view('Hotels.index')->with('hotels',$hotels);
+
+       // return view('Hotels.index');
     }
 
     /**
@@ -62,6 +64,11 @@ class hotelController extends Controller
 
         return view('Hotels.profile')->with('hotels',$hotels);
     }
+    public function showHotel(Request $request,$id)
+    {
+      $hotel=Hotel::find($id);
+      return view('Hotels.showHotel')->with('hotel',$hotel);
+    }
 
 
     /**
@@ -73,6 +80,7 @@ class hotelController extends Controller
     public function edit(Request $request,$id)
     {
         $hotel = Hotel::find($id);
+
         return view('Hotels.profileEdit')->with('hotel',$hotel);
     }
 
@@ -83,9 +91,26 @@ class hotelController extends Controller
      * @param  \App\hotel  $hotel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, hotel $hotel)
+    public function profileUpdate(Request $request,$id)
     {
-        //
+        $hotel = Hotel::find($id);
+        $hotel->username = $request->username;
+        $hotel->email = $request->email;
+        $hotel->password = $request->password;
+        $hotel->hotel_name = $request->hotel_name;
+        $hotel->location = $request->location;
+        $hotel->pool = $request->pool;
+        $hotel->price = $request->price;
+        $hotel->restaurent = $request->restaurent;
+
+        if($request->hasfile('image')){
+            $file=$request->file('image');
+            $file->move(public_path().'/',$file->getClientOriginalName());
+            $hotel->img=$file->getClientOriginalName();
+        }
+        $hotel->save();
+
+        return redirect()->route('hotel.profile');
     }
 
     /**
@@ -110,31 +135,57 @@ class hotelController extends Controller
         // return view('Hotels.show')->with('hotels',$hotels);
 
 
-        if($request->query)
+        if($request->ajax())
         {
-            $query = $request->query;
-            $hotels = Hotel::where('location', '=', $query)
-                        ->get();
-
-            $output = '<div class="col-md-6 col-lg-6 mb-4 ftco-animate">';
-            foreach($hotels as $hotel)
+            $output = "";
+            $query = $request->get('query');
+            if($query != '')
             {
-                $output.='<div class="col-md-6 col-lg-6 mb-4 ftco-animate">
-                  <a href="#" class="block-5" style="">
-                    <div class="text">
-                      <span class="price">${{$hotel->price}}/night</span>
-                      <h3 class="heading">{{$hotel->hotel_name}}</h3>
-                      <div class="post-meta">
-                        <span>{{$hotel->location}}</span>
-                      </div>
-                      <p class="star-rate"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star-half-full"></span> <span>500 reviews</span></p>
-                    </div>
-                  </a>
-                </div>';
+                $data = Hotel::where('hotel_name', '=', $query)
+                            ->get();
             }
-            echo $output;
-            console.log($request->query);
+            else
+            {
+                $data = Hotel::all();
+            }
+            $total_row = $data->count();
+            if($total_row > 0)
+            {
+                foreach($data as $row)
+                {
+                    $output.= "
+                        <div class='col-md-6 col-lg-6 mb-4 ftco-animate'>
+                          <a href='#' class='block-5' style='background-image: url('');'>
+                            <div class='text'>
+                              <span class='price'>$".$row->price."/night</span>
+                              <h3 class='heading'>".$row->hotel_name."</h3>
+                              <div class='post-meta'>
+                                <span>".$row->location."</span>
+                              </div>
+                              <p class='star-rate'><span class='icon-star'></span><span class='icon-star'></span><span class='icon-star'></span><span class='icon-star'></span><span class='icon-star-half-full'></span> <span>500 reviews</span></p>
+                            </div>
+                          </a>
+                         </div>
+                    ";
+                }
+            }
+            else
+            {
+                $output .= '<h2> Data not found </h2>';
+            }
+
+            $data = array(
+                 'total_data' => $output
+            );
+
+            echo json_encode($data);
+            Log::info('This is some useful information.');
+
+
         }
+
+
+        
 
 
 
@@ -145,5 +196,83 @@ class hotelController extends Controller
         $term = $request->term;
         $hotels = Hotel::where('location','=',$item)
                         ->get();
+    }
+
+    public function myPosts(Request $request)
+    {
+        $email = session()->get('hotel');
+
+        $hotel = Hotel::where('email','=',$email)
+                        ->first();
+
+        $hotel_id = $hotel->id;
+
+        $hotel_post = Hotel_post::where('hotel_id','=',$hotel_id)
+                    ->get();
+
+        return view('Hotels.myPosts')->with('posts',$hotel_post);
+    }
+
+    public function editMypost(Request $request,$id)
+    {
+        $post = Hotel_post::find($id)
+                        ->first();
+        return view('Hotels.editMypost')->with('post',$post);
+    }
+
+    public function postMyEditPost(Request $request,$id)
+    {
+        $post = Hotel_post::find($id);
+        $post->hotel_id=$request->hotel_id;
+        $post->hotel_name=$request->hotel_name;
+        $post->location=$request->location;
+        $post->singleRoom=$request->singleRoom;
+        $post->twoPerRoom=$request->twoPerRoom;
+        $post->fourPerRoom=$request->fourPerRoom;
+        $post->wifi=$request->wifi;
+        $post->price=$request->price;
+
+        if($request->hasfile('image')){
+            $file=$request->file('image');
+            $file->move(public_path().'/',$file->getClientOriginalName());
+            $post->img=$file->getClientOriginalName();
+        }
+
+        $post->save();
+
+        return redirect()->route('hotel.myPosts');
+    }
+
+    public function package(Request $request)
+    {
+        $post = Hotel::where('email','=',session()->get('hotel'))
+                        ->first();
+
+        return view('Hotels.postPackage')->with('post',$post);
+    }
+
+    public function packagePost(Request $request)
+    {
+
+        $post = new Hotel_post();
+        $post->hotel_id=$request->hotel_id;
+        $post->hotel_name=$request->hotel_name;
+        $post->location=$request->location;
+        $post->singleRoom=$request->singleRoom;
+        $post->twoPerRoom=$request->twoPerRoom;
+        $post->fourPerRoom=$request->fourPerRoom;
+        $post->wifi=$request->wifi;
+        $post->price=$request->price;
+
+        if($request->hasfile('image')){
+            $file=$request->file('image');
+            $file->move(public_path().'/',$file->getClientOriginalName());
+            $post->img=$file->getClientOriginalName();
+        }
+
+        $post->save();
+
+        return redirect()->route('hotel.myPosts');
+
     }
 }

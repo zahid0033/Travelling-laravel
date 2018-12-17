@@ -6,7 +6,7 @@
 
 @extends('layouts.layout')
 
-@section('title') Tour @endsection
+@section('title') SHow Hotel @endsection
         
 @section('content')
       
@@ -19,7 +19,7 @@
           <div class="row slider-text align-items-center">
             <div class="col-md-7 col-sm-12 ftco-animate">
               <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Hotels</span></p>
-              <h1 class="mb-3">Hotels</h1>
+              <h1 class="mb-3">Hotel</h1>
             </div>
           </div>
         </div>
@@ -32,24 +32,28 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="row">
-
-              @foreach($users as $user)
+             
               <div class="col-md-6 col-lg-6 mb-4 ftco-animate">
 
-                <h2 style="font-size: 30px;margin-bottom: 2em">Name : <span>{{$user->username}}</span></h2>
-                <h2 style="font-size: 30px;margin-bottom: 2em">Email : <span>{{$user->email}}</span></h2>
-                <h2 style="font-size: 30px;margin-bottom: 2em">Mobile : <span>{{$user->mobile}}</span></h2>
-                <h2 style="font-size: 30px;margin-bottom: 2em">Address : <span>{{$user->address}}</span></h2>
-                 
+                  <h2 style="font-size: 30px;margin-bottom: 2em">Name : <span>{{$hotel->username}}</span></h2>
+                  <h2 style="font-size: 30px;margin-bottom: 2em">Email : <span>{{$hotel->email}}</span></h2>
+                  <h2 style="font-size: 30px;margin-bottom: 2em">Hotel name : <span>{{$hotel->hotel_name}}</span></h2>
+                  <h2 style="font-size: 30px;margin-bottom: 2em">Location name : <span>{{$hotel->location}}</span></h2>
+                  <h2 style="font-size: 30px;margin-bottom: 2em">Pool : <span>{{$hotel->pool}}</span></h2>
+                  <h2 style="font-size: 30px;margin-bottom: 2em">Restaurent : <span>{{$hotel->restaurent}}</span></h2>
+                  <h2 style="font-size: 30px;margin-bottom: 2em">Price : <span>{{$hotel->price}}</span></h2>
 
+
+
+
+                
               </div>
 
               <div class="col-md-6 col-lg-6 mb-4 ftco-animate">
-                <a href="{{route('user.edit',[$user->id])}}" class="float-right btn btn-primary">Edit Profile</a>
+                
 
-                <img src="{{asset('images/'.$user->img)}}" style="max-width: 50%">
+                <img src="{{asset('images/'.$hotel->img)}}.jpg" style="max-width: 50%">
               </div>
-              @endforeach
 
             </div>
             <div class="row mt-5">
@@ -58,7 +62,6 @@
           </div>
           <!-- END -->
 
-          
 
 
         </div>

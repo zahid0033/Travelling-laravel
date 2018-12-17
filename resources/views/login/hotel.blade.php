@@ -45,14 +45,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <li class="nav-item active"><a href="{{route('home.index')}}" class="nav-link">Home</a></li>
             <li class="nav-item"><a href="{{route('hotel.index')}}" class="nav-link">Hotels</a></li>
             <li class="nav-item"><a href="{{route('hotelPost.index')}}" class="nav-link">Tour</a></li>
-            <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
-            <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-            <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
 
-            @if(session('user')!=null || session('hotel')!=null)
-              <li class="nav-item"><a href="{{route('logout.index')}}" class="nav-link">logout</a></li>
+
+            @if(session('user')!=null || session('hotel')!=null || session('admin')!=null )
+
+              @if(session('user'))
+                <li class="nav-item"><a href="{{route('user.profile')}}" class="nav-link">Profile</a></li>
+              
+              @elseif(session('hotel'))
+                <li class="nav-item"><a href="{{route('hotel.profile')}}" class="nav-link">Profile</a></li>
+              @endif
+              <li class="nav-item"><a href="{{route('logout.index')}}" class="nav-link">Logout</a></li>
             @else
               <li class="nav-item"><a href="{{route('login.index')}}" class="nav-link">Login</a></li>
+              <li class="nav-item"><a href="{{route('login.admin')}}" class="nav-link">Admin</a></li>
 
             @endif
 

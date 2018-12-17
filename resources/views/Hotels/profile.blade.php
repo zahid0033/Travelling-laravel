@@ -30,10 +30,24 @@
     <section class="ftco-section">
       <div class="container">
         <div class="row">
+
+          @foreach($hotels as $hotel)
+          <div class="col-sm-12">
+             <div class="col-sm-5"></div>
+            <div class="col-sm-7">
+               <a href="{{route('hotel.package')}}" style="margin-bottom: 3em" class="float-right btn btn-primary">Post a Package</a>
+               <a href="{{route('hotel.myPosts')}}" style="margin-bottom: 3em;margin-right: 1em" class="float-right btn btn-primary">My Posts</a>
+            </div>
+          </div>
+         
+
+
+
+
           <div class="col-lg-12">
             <div class="row">
 
-              @foreach($hotels as $hotel)
+              
               <div class="col-md-6 col-lg-6 mb-4 ftco-animate">
 
                   <h2 style="font-size: 30px;margin-bottom: 2em">Name : <span>{{$hotel->username}}</span></h2>
@@ -53,7 +67,7 @@
               <div class="col-md-6 col-lg-6 mb-4 ftco-animate">
                 <a href="{{route('hotel.edit',[$hotel->id])}}" class="float-right btn btn-primary">Edit Profile</a>
 
-                <img src="{{asset('images/'.$hotel->img)}}.jpg" style="max-width: 50%">
+                <img src="{{asset('images/'.$hotel->img)}}" style="max-width: 50%">
               </div>
               @endforeach
 

@@ -8,8 +8,10 @@ namespace App\Http\Controllers;
 
 use App\signUp;
 use Illuminate\Http\Request;
+use App\Http\Requests\userRegRequest;
 
 use App\User;
+use App\Hotel;
 
 class signUpController extends Controller
 {
@@ -39,7 +41,7 @@ class signUpController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(userRegRequest $request)
     {
         
         $user = new User();
@@ -56,6 +58,28 @@ class signUpController extends Controller
         }
 
         $user->save();
+
+        return redirect()->route('home.index');
+    }
+
+    public function hotelStore(Request $request)
+    {
+        $hotel = new Hotel();
+        $hotel->username = $request->username;
+        $hotel->email = $request->email;
+        $hotel->password = $request->password;
+        $hotel->hotel_name = $request->hotel_name;
+        $hotel->location = $request->location;
+        $hotel->pool = $request->pool;
+        $hotel->price = $request->price;
+        $hotel->restaurent = $request->restaurent;
+
+        if($request->hasfile('image')){
+            $file=$request->file('image');
+            $file->move(public_path().'/',$file->getClientOriginalName());
+            $hotel->img=$file->getClientOriginalName();
+        }
+        $hotel->save();
 
         return redirect()->route('home.index');
     }

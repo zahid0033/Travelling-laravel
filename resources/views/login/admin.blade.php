@@ -7,7 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Sign up | user</title>
+<title>Login | user</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 <meta name="keywords" content="Holiday Homes Booking Form Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements" />
@@ -69,65 +69,39 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     </nav>
 
 <!--background-->
-<h1> User Signup</h1>
+<h1> Admin Login</h1>
     <div class="bg-agile">
 	<div class="book-appointment">
-	<h2>Choice For 
-Holiday Homes</h2>
-						<div class="book-form agileits-login">
-							<form action="" method="post" enctype="multipart/form-data">
+	<h2>Admin Login</h2>
 
+						<div class="book-form agileits-login">
+							<form action="#" method="post">
 								{{@csrf_field()}}
-								<div class="phone_email">
-									<label>Full name : </label>
-									<div class="form-text">
-										<i class="fa fa-user" aria-hidden="true"></i>
-										<input type="text" name="username" placeholder="" value="{{old('username')}}" required="">
-									</div> 
-								</div>
-								<div class="phone_email phone_email1">
+								<div class="col-sm-12">
 									<label>Email : </label>
 									<div class="form-text">
 										<i class="fa fa-envelope-o" aria-hidden="true"></i>
-										<input type="email" name="email" value="{{old('email')}}" placeholder="" required="">
+										<input type="email" name="email" placeholder="" required="">
 									</div>
 								</div>
-								<div class="phone_email ">
+								<div class="col-sm-12">
 									<label>Password : </label>
 									<div class="form-text">
-										<i class="fa fa-envelope-o" aria-hidden="true"></i>
-										<input type="password" name="password" value="{{old('password')}}" placeholder="" required="">
-									</div>
-								</div>
-								<div class="phone_email phone_email1">
-									<label>Phone number : </label>
-									<div class="form-text">
 										<i class="fa fa-phone" aria-hidden="true"></i>
-										<input type="text" name="mobile" value="{{old('mobile')}}"  placeholder="" required="">
+										<input type="password" name="password" placeholder="" required="">
 									</div> 
 								</div> 
-								<div class="phone_email">
-									<label>Address : </label>
-									<div class="form-text">
-										<i class="fa fa-map-marker" aria-hidden="true"></i>
-										<input type="text" name="address" value="{{old('address')}}"  placeholder="" required="">
-									</div> 
-								</div> 
-								<div class="phone_email phone_email1">
-									<label>Upload Image : </label>
-									<div class="form-text">
-										<i class="fa fa-map-marker" aria-hidden="true"></i>
-										<input type="file" name="image" value=""/>
-									</div> 
-								</div> 
-								<div class="clear"></div>
 								
+								<div class="clear"></div>
+								 
 												
-								<input type="submit" value="Reservation">
+								<input type="submit" value="Login">
+							</form>
+
+							
 
 
-
-								@if(count($errors) > 0)
+							@if(count($errors) > 0)
 
 								@foreach($errors->all() as $error)
 
@@ -137,8 +111,6 @@ Holiday Homes</h2>
 
 							@endif
 
-
-							</form>
 						</div>
 
 		</div>

@@ -19,7 +19,7 @@
           <div class="row slider-text align-items-center">
             <div class="col-md-7 col-sm-12 ftco-animate">
               <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Hotels</span></p>
-              <h1 class="mb-3">Hotels</h1>
+              <h1 class="mb-3">Profile Edit</h1>
             </div>
           </div>
         </div>
@@ -33,7 +33,82 @@
           <div class="col-lg-12">
             <div class="row">
 
-             
+
+            <div class="book-form agileits-login">
+              <form action="#" method="post" enctype="multipart/form-data">
+
+                 {{@csrf_field()}}
+                <div class="phone_email">
+                  <label>Username : </label>
+                  <div class="form-text">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <input type="text" name="username" value="{{$hotel->username}}" placeholder="" required="">
+                  </div> 
+                </div>
+                <div class="phone_email phone_email1">
+                  <label>Email : </label>
+                  <div class="form-text">
+                    <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                    <input type="email" name="email" value="{{$hotel->email}}" placeholder="" required="">
+                  </div>
+                </div>
+                <div class="phone_email">
+                  <label>Password: </label>
+                  <div class="form-text">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <input type="password" name="password" placeholder="" required="">
+                  </div> 
+                </div>
+                <div class="phone_email phone_email1">
+                  <label>Hotel Name : </label>
+                  <div class="form-text">
+                    <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                    <input type="text" name="hotel_name" value="{{$hotel->hotel_name}}" placeholder="" required="">
+                  </div>
+                </div>
+                <div class="phone_email">
+                  <label>Location : </label>
+                  <div class="form-text">
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                    <input type="text" name="location" value="{{$hotel->location}}" placeholder="" required="">
+                  </div> 
+                </div> 
+                <div class="phone_email phone_email1">
+                  <label>Pool : </label>
+                  <div class="form-text">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    <input type="text" name="pool" value="{{$hotel->pool}}" placeholder="" required="">
+                  </div> 
+                </div> 
+                <div class="phone_email">
+                  <label>Restaurent : </label>
+                  <div class="form-text">
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                    <input type="text" name="restaurent" value="{{$hotel->restaurent}}" placeholder="" required="">
+                  </div> 
+                </div> 
+                <div class="phone_email phone_email1">
+                  <label>Price : </label>
+                  <div class="form-text">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    <input type="text" name="price" value="{{$hotel->price}}" placeholder="" required="">
+                  </div> 
+                </div> 
+                <div class="phone_email phone_email1">
+                  <label>Upload Image : </label>
+                  <div class="form-text">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    <input type="file" name="image" value=""/>
+                  </div> 
+                </div> 
+                <div class="clear"></div>
+                 
+                        
+                <input type="submit" value="Submit">
+              </form>
+            </div>
+
+           <!--   
               <div class="col-md-6 col-lg-6 mb-4 ftco-animate">
 
                   <h2 style="font-size: 30px;margin-bottom: 2em">Name : <span>{{$hotel->username}}</span></h2>
@@ -54,7 +129,7 @@
                 <a href="{{route('hotel.edit',[$hotel->id])}}" class="float-right btn btn-primary">Edit Profile</a>
 
                 <img src="{{asset('images/'.$hotel->img)}}.jpg" style="max-width: 50%">
-              </div>
+              </div> -->
 
             </div>
             <div class="row mt-5">

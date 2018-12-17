@@ -45,12 +45,27 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <li class="nav-item active"><a href="{{route('home.index')}}" class="nav-link">Home</a></li>
             <li class="nav-item"><a href="{{route('hotel.index')}}" class="nav-link">Hotels</a></li>
             <li class="nav-item"><a href="{{route('hotelPost.index')}}" class="nav-link">Tour</a></li>
-            <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
-            <li class="nav-item"><a href="{{route('login.index')}}" class="nav-link">Login</a></li>
-            <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-            <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+
+
+            @if(session('user')!=null || session('hotel')!=null || session('admin')!=null )
+
+              @if(session('user'))
+                <li class="nav-item"><a href="{{route('user.profile')}}" class="nav-link">Profile</a></li>
+              
+              @elseif(session('hotel'))
+                <li class="nav-item"><a href="{{route('hotel.profile')}}" class="nav-link">Profile</a></li>
+              @endif
+              <li class="nav-item"><a href="{{route('logout.index')}}" class="nav-link">Logout</a></li>
+            @else
+              <li class="nav-item"><a href="{{route('login.index')}}" class="nav-link">Login</a></li>
+              <li class="nav-item"><a href="{{route('login.admin')}}" class="nav-link">Admin</a></li>
+
+            @endif
+
+
           </ul>
         </div>
+        
       </div>
     </nav>
 
@@ -61,12 +76,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<h2>Choice For 
 Holiday Homes</h2>
 						<div class="book-form agileits-login">
-							<form action="#" method="post">
+							<form action="#" method="post" enctype="multipart/form-data">
+
+								 {{@csrf_field()}}
 								<div class="phone_email">
-									<label>Full name : </label>
+									<label>Username : </label>
 									<div class="form-text">
 										<i class="fa fa-user" aria-hidden="true"></i>
-										<input type="text" name="Name" placeholder="" required="">
+										<input type="text" name="username" placeholder="" required="">
 									</div> 
 								</div>
 								<div class="phone_email phone_email1">
@@ -77,69 +94,56 @@ Holiday Homes</h2>
 									</div>
 								</div>
 								<div class="phone_email">
-									<label>Phone number : </label>
+									<label>Password: </label>
+									<div class="form-text">
+										<i class="fa fa-user" aria-hidden="true"></i>
+										<input type="password" name="password" placeholder="" required="">
+									</div> 
+								</div>
+								<div class="phone_email phone_email1">
+									<label>Hotel Name : </label>
+									<div class="form-text">
+										<i class="fa fa-envelope-o" aria-hidden="true"></i>
+										<input type="text" name="hotel_name" placeholder="" required="">
+									</div>
+								</div>
+								<div class="phone_email">
+									<label>Location : </label>
 									<div class="form-text">
 										<i class="fa fa-phone" aria-hidden="true"></i>
-										<input type="text" name="Phone no" placeholder="" required="">
+										<input type="text" name="location" placeholder="" required="">
 									</div> 
 								</div> 
 								<div class="phone_email phone_email1">
-									<label>Address : </label>
+									<label>Pool : </label>
 									<div class="form-text">
 										<i class="fa fa-map-marker" aria-hidden="true"></i>
-										<input type="text" name="address" placeholder="" required="">
+										<input type="text" name="pool" placeholder="" required="">
+									</div> 
+								</div> 
+								<div class="phone_email">
+									<label>Restaurent : </label>
+									<div class="form-text">
+										<i class="fa fa-phone" aria-hidden="true"></i>
+										<input type="text" name="restaurent" placeholder="" required="">
+									</div> 
+								</div> 
+								<div class="phone_email phone_email1">
+									<label>Price : </label>
+									<div class="form-text">
+										<i class="fa fa-map-marker" aria-hidden="true"></i>
+										<input type="text" name="price" placeholder="" required="">
+									</div> 
+								</div> 
+								<div class="phone_email phone_email1">
+									<label>Upload Image : </label>
+									<div class="form-text">
+										<i class="fa fa-map-marker" aria-hidden="true"></i>
+										<input type="file" name="image" value=""/>
 									</div> 
 								</div> 
 								<div class="clear"></div>
-								<div class="agileits_reservation_grid">
-									<div class="span1_of_1">
-										<label>Departure Date : </label> 
-										<div class="book_date"> 
-											<i class="fa fa-calendar" aria-hidden="true"></i>
-												<input  id="datepicker" name="Text" type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}" required="">
-
-										</div>					
-									</div>
-									<div class="span1_of_2">
-										<label>Arrival Date : </label> 
-										<div class="book_date"> 
-											<i class="fa fa-calendar" aria-hidden="true"></i>
-												<input  id="datepicker1" name="Text" type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}" required="">
-
-										</div>					
-									</div>
-									<div class="clear"></div>
-									<div class="span1_of_1">
-										<label>No.of people : </label>
-										<!-- start_section_room -->
-										<div class="section_room">
-											<i class="fa fa-users" aria-hidden="true"></i>
-											<select id="country1" onchange="change_country(this.value)" class="frm-field required sect">
-												<option value="AX"></option>
-												<option value="null">1 People</option>
-												<option value="null">2 People</option>
-												<option value="null">3 People</option>         
-												<option value="AX">4 People</option>
-												<option value="AX">More</option>
-											</select>
-										</div>	
-									</div>
-									<div class="span1_of_2">
-										<label>Select Location : </label>
-										<!-- start_section_room -->
-										<div class="section_room">
-											<i class="fa fa-map-marker" aria-hidden="true"></i>
-											<select id="country1" onchange="change_country(this.value)" class="frm-field required sect">
-												<option value="AX"></option>
-												<option value="null">Villa</option>
-												<option value="null">Apartment</option>
-												<option value="null">House</option>         
-												<option value="AX">More</option>
-											</select>
-										</div>	
-									</div> 									
-									<div class="clear"></div>
-								</div> 
+								 
 												
 								<input type="submit" value="Reservation">
 							</form>

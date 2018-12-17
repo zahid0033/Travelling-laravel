@@ -8918,7 +8918,7 @@ h1 {
   margin-top:.5em!important;
 }
 /*-- reservation --*/
-.book-form input[type="text"],.book-form input[type="password"],.book-form input[type="email"], select#country, select#country1 {
+.book-form input[type="text"],.book-form input[type="date"],.book-form input[type="password"],.book-form input[type="email"], select#country, select#country1 {
       width: 100%;
     color: #777;
     font-size: 0.9em;

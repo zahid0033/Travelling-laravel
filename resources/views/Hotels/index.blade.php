@@ -21,8 +21,8 @@
 
     <div class="col-sm-12">
      
-        <input type="text" name="auto" class="form-control" id="term" placeholder="search">
-        {{@csrf_field()}}
+        <input type="text" name="search" class="form-control" id="search" class="form-control" placeholder="search Hotel Name">
+
   
     </div>
 
@@ -33,12 +33,13 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8">
-            <div class="row">
+            <div class="row" id="data" >
+              
 
 
-                @foreach($hotels as $hotel)
+               @foreach($hotels as $hotel)
                 <div class="col-md-6 col-lg-6 mb-4 ftco-animate">
-                  <a href="{{route('hotelPost.book',[$hotel->id])}}" class="block-5" style="background-image: url('{{asset('images/'.$hotel->img)}}.jpg');">
+                  <a href="{{route('hotel.showHotel',[$hotel->id])}}" class="block-5" style="background-image: url('{{asset('images/'.$hotel->img)}}.jpg');">
                     <div class="text">
                       <span class="price">${{$hotel->price}}/night</span>
                       <h3 class="heading">{{$hotel->hotel_name}}</h3>
@@ -49,10 +50,10 @@
                     </div>
                   </a>
                 </div>
-                @endforeach
+                @endforeach 
 
-          
-
+         
+              
             </div>
             <div class="row mt-5">
               
@@ -65,32 +66,6 @@
               <div class="search-tours bg-light p-4">
                 <h3>Find your tour</h3>
 
-                <form action="" method="post">
-
-                  {{@csrf_field()}}
-                  <div class="fields">
-                    <div class="row flex-column">
-
-                      <div class="textfield-search col-sm-12 group mb-3"><input type="text" name="location" class="form-control" placeholder="Search Location"></div>
-
-                     
-                      <div class="select-wrap col-sm-12 group mb-3">
-                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                        <select name="price" id="" class="form-control">
-                          <option value="">Price</option>
-                          <option value="2000">$1000 - $2000</option>
-                          <option value="4000">$2000 - $5000</option>
-                          <option value="5000">$5000 +</option>
-                        </select>
-                      </div>
-                      <div class="col-sm-12 group mb-3">
-                        <input type="submit" class="search-submit btn btn-primary" value="Find Hotels">
-                      </div>
-                    </div>
-                  </div>
-                </form>
-
-              </div>
             </div>
 
             <div class="sidebar-box ftco-animate">
@@ -128,34 +103,36 @@
     </section>
 
   <script>
+
        $(document).ready(function(){
 
-          $('#term').keyup(function(){
+        fetch_hotel_data();
 
-            var query = $(this).val();
-            if(query != '')
-            {
-              var _token = $('input[name="_token"]').val();
-
-              $.ajax({
+        function fetch_hotel_data(query = '')
+        {
+            $.ajax({
                 url:"{{route('hotel.search')}}",
-                method:"POST",
-                data:{query:query,_token:_token},
-                success:function()
+                method:'GET',
+                data:{query:query},
+                dataType:'json',
+                success:function(data)
                 {
-                  $('#hotels').fadeIn();
-                  $('#hotels').html(data);
+                    $('#data').html(data.total_data);
                 }
-              })
+             })
+        }
 
-
-            }
-
-
-          });
+        $(document).on('keyup', '#search', function(){
+          var query = $(this).val();
+          fetch_hotel_data(query);
+         });
 
        });
+
   </script>
+
+
+
     
  @include('layouts.footer')
     
